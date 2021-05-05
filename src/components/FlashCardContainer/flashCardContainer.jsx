@@ -1,5 +1,6 @@
 import React from 'react';
 import FlashCard from './FlashCard/flashCard'
+import 'flashCardContainer.scss'
 
 class FlashCardContainer extends React.Component {
     constructor() {
@@ -12,21 +13,15 @@ class FlashCardContainer extends React.Component {
           word: 'Reggae',
           description: 'Music like Bob Marley, man.',
         }, {
-          word: 'Folk',
-          description: 'Music like Bob Dylan, man.',
+          word: 'Bluegrass',
+          description: 'Music like Earl Scruggs.',
         }
       ]),
         flashCardNumber: 0
       };
-    //   this.boundCallback = this.hideCreateCard.bind(this);
-    //   this.boundCreateCard = this.setCard.bind(this);
       this.boundShowPrevFlashcard = this.showPrevFlashcard.bind(this);
       this.boundShowNextFlashcard = this.showNextFlashcard.bind(this);
     }
-    
-    // hideCreateCard() {
-    //   this.setState({showModal: false});
-    // }
     
     showNextFlashcard() {
       if ((this.state.flashCardNumber + 1) !== this.state.flashcards.size) {
@@ -44,21 +39,6 @@ class FlashCardContainer extends React.Component {
       const newFlashcards = this.state.flashcards.push(flashcard);
       this.setState({flashcards: newFlashcards});
     }
-    
-    // generateDots() {
-    //   const times = this.state.cards.size;
-    //   let arr = [];
-    //   _.times(times).forEach((num) => {
-    //     const dotClass = num  === this.state.cardNumber ? 'active' : '';
-    //     arr.push(
-    //       <span 
-    //         className={`flashcard-container__dot fa fa-circle ${dotClass}`}
-    //         onClick={() => this.setState({cardNumber: num})}
-    //       />
-    //     )
-    //   });
-    //   return arr;
-    // }
     
     generateFlashcards() {
       const flashcards = this.state.flashcards;
@@ -84,16 +64,9 @@ class FlashCardContainer extends React.Component {
                 this.setState({showModal: !this.state.showModal});
               }}
             />
-          {/* {this.state.showModal 
-            ? <CreateFlashcard 
-                onShadowClick={this.boundCallback}
-                onCreateFlashcard={this.boundCreateFlashcard}
-              /> 
-            : ''} */}
+
           {this.generateFlashcards()}
-          {/* <div className='flashcard-container__dots-wrapper'>
-            {this.generateDots()}
-          </div> */}
+
         </div>
      );
     }
