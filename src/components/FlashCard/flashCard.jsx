@@ -1,11 +1,11 @@
 import React from 'react';
-import 'flashCard.scss'
+import './flashCard.scss'
 
 
 class FlashCard extends React.Component {
   
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {
         showAnswer: false
       }
@@ -17,13 +17,13 @@ class FlashCard extends React.Component {
       const flashCardClass = this.state.showAnswer ? 'back' : '';
       const contentClass = this.state.showAnswer ? 'back' : 'front';
       const actionClass = this.state.showAnswer ? 'active' : '';
-  
+
       return (
         <div 
           className={`flashcard ${flashCardClass}`}
           onClick={() => this.setState({showAnswer: !this.state.showAnswer})}
         >
-        <span className='flashcard__counter'>{this.props.flashcardNumber + 1}</span>
+        <span className='flashcard__counter'>{this.props.flashCardNumber + 1}</span>
           <div 
             className='flashcard__flip-card'
             onClick={ () => {
