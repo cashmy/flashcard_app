@@ -28,6 +28,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import FlashCardContainer from '../FlashCardContainer/flashCardContainer'
 import ViewCollections from '../../Views/view_collections'
 import ViewCollectionTypes from '../../Views/view_collectionTypes'
+import SignIn from '../SignIn/signIn'
 
 
 const drawerWidth = 240;
@@ -187,10 +188,12 @@ export default function MiniDrawer() {
                 <ListItemText primary='Media' />
               </ListItem>
             </Link>
+            <Link to={'signIn'}>
             <ListItem button key='5'>
               <ListItemIcon><ExitToAppIcon /></ListItemIcon>
               <ListItemText primary='Log In' />
             </ListItem>
+            </Link>
           </List>
         </Drawer>
       
@@ -199,6 +202,7 @@ export default function MiniDrawer() {
             <Route exact={true} path="/" component={FlashCardContainer} />
             <Route exact={true} path="/collection" component={ViewCollections} />
             <Route exact={true} path={'/collectionType'} component={ViewCollectionTypes} />
+            <Route exact={true} path={'/signIn'} component={SignIn} />
         </main>
       </Router>
     </div>
