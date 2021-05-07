@@ -5,11 +5,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Image Files
 I added the ability to "upload" images in both the collections and collectionsType database files.
 It stores the images into the MEDIA_ROOT directory of the flashcard_db backend.
-   (e.g. D:/D-Documents/devCodeCamp/Week-11/Projects/*flashcard_database/flashcard_db/media* ) 
+   (e.g. D:/.../Projects/*flashcard_database/flashcard_db/media* ) 
    
-HOWEVER, with a "local instance" - personal computer, Reac (and browser security) will not allow 
+HOWEVER, with a "local instance" - personal computer, React (and browser security) will not allow 
 an 'external' link to the files unless it is placed in the 'public' directory. 
-   (e.g. D:/D-Documents/devCodeCamp/Week-11/Projects/*flashcard_app/public/images* )
+   (e.g. D:/.../Projects/*flashcard_app/public/images* )
    
 Neither application allows for "easy" redirection to another directory on the fly.
 Once publication to a public server is handled. The issue could be addressed.
