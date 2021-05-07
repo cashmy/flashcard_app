@@ -1,6 +1,7 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MiniDrawer from './MiniDrawer/miniDrawer'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 
 const App = () => {
@@ -8,9 +9,10 @@ const App = () => {
 
   return (
     <div >
-      <CssBaseline />
-      <MiniDrawer />
-
+      <Router> 
+        <CssBaseline />
+        <MiniDrawer />
+      </Router>
     </div>
   );
 }

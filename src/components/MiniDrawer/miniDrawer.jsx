@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -25,7 +26,9 @@ import ImageSearchTwoToneIcon from '@material-ui/icons/ImageSearchTwoTone';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import FlashCardContainer from '../FlashCardContainer/flashCardContainer'
-import CollectionsTable from '../Collections/collectionsTable'
+import ViewCollections from '../../Views/view_collections'
+import ViewCollectionTypes from '../../Views/view_collectionTypes'
+
 
 const drawerWidth = 240;
 
@@ -106,90 +109,98 @@ export default function MiniDrawer() {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-    
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Flash Card Bonanza
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
+      <Router>
+        <CssBaseline />
+      
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, {
+                [classes.hide]: open,
+              })}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap>
+              Flash Card Bonanza
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          className={clsx(classes.drawer, {
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-          'Brand logo'
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-            <ListItem button key='0'>
-              <ListItemIcon><HomeIcon /></ListItemIcon>
-              <ListItemText primary='Home' />
-            </ListItem>
-            <ListItem button key='1'>
-              <ListItemIcon><CollectionsIcon /></ListItemIcon>
-              <ListItemText primary='Collections' />
-            </ListItem>
-            <ListItem button key='2'>
-              <ListItemIcon><CategoryIcon /></ListItemIcon>
-              <ListItemText primary='Collection Types' />
-            </ListItem>
-        </List>
-        <Divider />
-        <List>
-        <ListItem button key='3'>
+          })}
+          classes={{
+            paper: clsx({
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open,
+            }),
+          }}
+        >
+          <div className={classes.toolbar}>
+            'Brand logo'
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            <Link to={''}>
+              <ListItem button key='0'>
+                <ListItemIcon><HomeIcon /></ListItemIcon>
+                <ListItemText primary='Home' />
+              </ListItem>
+            </Link>
+            <Link to={'collection'}>
+              <ListItem button key='1'>
+                  <ListItemIcon><CollectionsIcon /></ListItemIcon>
+                  <ListItemText primary='Collections' />
+              </ListItem>
+            </Link> 
+            <Link to={'collectionType'}>
+              <ListItem button key='2'>
+                  <ListItemIcon><CategoryIcon /></ListItemIcon>
+                  <ListItemText primary='Collection Types' />
+              </ListItem>
+            </Link>
+          </List>
+          <Divider />
+          <List>
+            <ListItem button key='3'>
               <ListItemIcon><AccountCircleIcon /></ListItemIcon>
               <ListItemText primary='Profile' />
             </ListItem>
-            <ListItem button key='4'>
-              <ListItemIcon><ImageSearchTwoToneIcon /></ListItemIcon>
-              <ListItemText primary='Media' />
-            </ListItem>
+            <Link to={{ pathname: 'https://unsplash.com/' }} target="_blank">
+              <ListItem button key='4'>
+                <ListItemIcon><ImageSearchTwoToneIcon /></ListItemIcon>
+                <ListItemText primary='Media' />
+              </ListItem>
+            </Link>
             <ListItem button key='5'>
               <ListItemIcon><ExitToAppIcon /></ListItemIcon>
               <ListItemText primary='Log In' />
             </ListItem>
-        </List>
-      </Drawer>
-    
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-
-        <FlashCardContainer />
-        <CollectionsTable />
-
-      </main>
-    
+          </List>
+        </Drawer>
+      
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+            <Route exact={true} path="/" component={FlashCardContainer} />
+            <Route exact={true} path="/collection" component={ViewCollections} />
+            <Route exact={true} path={'/collectionType'} component={ViewCollectionTypes} />
+        </main>
+      </Router>
     </div>
   );
 }

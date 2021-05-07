@@ -27,13 +27,13 @@ class FlashCardContainer extends React.Component {
     showNextFlashcard() {
       let flashCardsLength = this.state.flashcards.length
       if ((this.state.flashCardNumber + 1) !== flashCardsLength) {
-        this.setState({flashCardNumber: this.state.flashCardNumber += 1});
+        this.setState({flashCardNumber: this.state.flashCardNumber + 1});
       }
     }
     
     showPrevFlashcard() {
       if (this.state.flashCardNumber !== 0) {
-        this.setState({flashCardNumber: this.state.flashCardNumber -= 1});
+        this.setState({flashCardNumber: this.state.flashCardNumber - 1});
       }
     }
     
