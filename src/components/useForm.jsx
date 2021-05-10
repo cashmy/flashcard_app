@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core'
 export function useForm(initialFValues) {
 
     const [values, setValues] = useState(initialFValues);
-    const [errors, setErros] = useState({})
+    const [errors, setErrors] = useState({})
 
     const handleInputChange = event => {
         const { name, value } = event.target

@@ -20,6 +20,8 @@ const CollectionTypeAdd = () => {
         setErrors({
             ...temp
         })
+
+        return Object.values(temp).every(x => x === "")
     }
 
     const {
@@ -32,10 +34,13 @@ const CollectionTypeAdd = () => {
 
 
   // TODO: Submit button (Add hook to API call here)
-    const handleSubmit = async values => {
-        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-        await sleep(300);
-        window.alert(JSON.stringify(values, 0, 2));
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if(validate())
+        window.alert('testing')
+        // const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+        // await sleep(300);
+        // window.alert(JSON.stringify(values, 0, 2));
     };
 
 
@@ -52,6 +57,7 @@ const CollectionTypeAdd = () => {
                         name='fcCollectionType_id'
                         value={values.fcCollectionType_id}
                         onChange={handleInputChange}
+                        error={errors.fcCollectionType_id}
                     />
                 </Grid>
 
@@ -62,6 +68,7 @@ const CollectionTypeAdd = () => {
                         name='fcCollectionType_name'
                         value={values.fcCollectionType_name}
                         onChange={handleInputChange}
+                        error={errors.fcCollectionType_name}
                     />
                 </Grid>
 
@@ -72,9 +79,10 @@ const CollectionTypeAdd = () => {
                         label='Description'
                         name='fcCollectionType_desc'
                         value={values.fcCollectionType_desc}
-                        onChange={handleInputChange}s
+                        onChange={handleInputChange}
                         multiline
                         rows={2}
+                        error={errors.fcCollectionType_desc}
                     />
                 </Grid>
 
