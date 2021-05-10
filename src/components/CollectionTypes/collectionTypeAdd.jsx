@@ -2,6 +2,7 @@ import React from 'react';
 import { Paper, Grid, } from '@material-ui/core';
 import Controls from '../../components/controls/Controls';
 import { useForm, Form} from '../../components/useForm';
+import axios from 'axios'
 
 const initialFValues = {
     fcCollectionType_id: '',
@@ -10,7 +11,9 @@ const initialFValues = {
     fcCollectionType_image: ''
 }
 
-const CollectionTypeAdd = () => {
+const CollectionTypeAdd = (props) => {
+    
+    // const {onClearCallBack} = props
 
     const validate = (fieldValues = values) => {
         let temp = {...errors};
@@ -38,15 +41,20 @@ const CollectionTypeAdd = () => {
     } = useForm(initialFValues, true, validate)
 
 
-  // TODO: Submit button (Add hook to API call here)
     const handleSubmit = (event) => {
         event.preventDefault();
         if(validate())
-        window.alert('testing')
-        // const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-        // await sleep(300);
-        // window.alert(JSON.stringify(values, 0, 2));
+            // TODO: Refactor into services layer (?)
+            // TODO: Add a callback to Parent(View) that re-renders the list table
+           axios.post('http://127.0.0.1:8000/fcCollectionType/', (values))
+                .then(response => { resetForm()
+                 })
+                .catch(error => alert('There was an error! ' + error.message));
     };
+
+    const handleCancel = (event) => {
+        props.onClearCallback("Clear")
+    }
 
 
   return (
@@ -111,6 +119,7 @@ const CollectionTypeAdd = () => {
                     <Controls.Button
                         text="Cancel"
                         color="secondary"
+                        onClick={handleCancel}
                     />
                 </Grid>
                 <Grid item style={{ marginTop: 16 }}>

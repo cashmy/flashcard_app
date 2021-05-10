@@ -41,10 +41,10 @@ const ViewCollectionTypes = () => {
         setCTypesMode('Add')
     }
 
-    // // After submission, remove Add component
-    // const onAddCallback = () => {
-    //     setCTypesMode('')
-    // }
+    // On Cancel request, remove Add component
+    const onClearCallback = (text) => {
+        setCTypesMode('')
+    }
 
     // // Switch Mode and trigger for render of Edit component
     // const onEditClickCallback = () => {
@@ -65,7 +65,7 @@ const ViewCollectionTypes = () => {
         <div className={classes.root}>
           <Grid container spacing={3}>
             <Grid item xs={3}>
-              <CollectionTypeList />
+              <CollectionTypeList/>
             </Grid>
             <Grid item xs={9}>
               <Paper elevation={3} className={classes.paper}>ADD/EDIT Collection Types 
@@ -79,8 +79,8 @@ const ViewCollectionTypes = () => {
                         <AddIcon 
                         />
                     </Fab></Paper>
-                {cTypesMode === 'Edit' && <CollectionTypeEdit /> }
-                {cTypesMode === 'Add' && <CollectionTypeAdd  /> }
+                {cTypesMode === 'Edit' && <CollectionTypeEdit onClearCallback={onClearCallback}/> }
+                {cTypesMode === 'Add' && <CollectionTypeAdd  onClearCallback={onClearCallback}/> }
             </Grid>
           </Grid>
         </div>
