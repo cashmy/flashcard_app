@@ -17,26 +17,31 @@ const CollectionTypeAdd = () => {
         temp.fcCollectionType_id = values.fcCollectionType_id ? "" : "This field is required."
         temp.fcCollectionType_name = values.fcCollectionType_name ? "" : "This field is required."
         temp.fcCollectionType_desc = values.fcCollectionType_desc ? "" : "This field is required."
+        setErrors({
+            ...temp
+        })
     }
 
     const {
         values,
         // setValues,
+        errors,
+        setErrors,
         handleInputChange
     } = useForm(initialFValues)
 
 
   // TODO: Submit button (Add hook to API call here)
-    // const onSubmit = async values => {
-    //     const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-    //     await sleep(300);
-    //     window.alert(JSON.stringify(values, 0, 2));
-    // };
+    const handleSubmit = async values => {
+        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+        await sleep(300);
+        window.alert(JSON.stringify(values, 0, 2));
+    };
 
 
   return (
     <div style={{ padding: 16, margin: 'auto', maxWidth: 600 }}>
-    <Form>
+    <Form onSubmit={handleSubmit}>
         <Paper style={{ padding: 16}}>
             <Grid container alignItems="flex-start" spacing={2}>
             
