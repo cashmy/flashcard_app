@@ -17,7 +17,7 @@ const styles = theme => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
-    '& .MuiButtonBase-root': {
+    '& .MuiIconButton-root': {
       color: 'rgba(255, 255, 255, 0.54)',
     }
   },
