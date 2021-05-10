@@ -46,6 +46,12 @@ const ViewCollectionTypes = () => {
         setCTypesMode('')
     }
 
+    // OnClick Request Action, remove Add component
+    const onItemRequest = (text) => {
+        if (text === 'Edit')
+          setCTypesMode('Edit')
+      }
+
     // // Switch Mode and trigger for render of Edit component
     // const onEditClickCallback = () => {
     //     setCTypesMode('Edit')
@@ -65,7 +71,7 @@ const ViewCollectionTypes = () => {
         <div className={classes.root}>
           <Grid container spacing={3}>
             <Grid item xs={3}>
-              <CollectionTypeList/>
+              <CollectionTypeList onItemRequest={onItemRequest}/>
             </Grid>
             <Grid item xs={9}>
               <Paper elevation={3} className={classes.paper}>ADD/EDIT Collection Types 

@@ -19,11 +19,16 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     '& .MuiIconButton-root': {
       color: 'rgba(255, 255, 255, 0.54)',
-    }
+    },
   },
 });
 
 class CollectionTypeList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleOnClick = this.handleOnClick.bind(this);
+  }
   state = {
     collectionTypeData: []
   }
@@ -38,6 +43,11 @@ class CollectionTypeList extends React.Component {
         collectionTypeData: response.data
       })
   }
+
+  // Cancel Callback handler (pass back to parent)
+  handleOnClick = (event) => {
+  this.props.onItemRequest("Edit")
+    }
 
 render () {
   const classes = this.props;
@@ -54,7 +64,9 @@ render () {
               <GridListTileBar
                 title={tile.fcCollectionType_name}
                 actionIcon={
-                  <IconButton aria-label={`edit ${tile.fcCollectionType_name}`} >
+                  <IconButton 
+                    aria-label={`edit ${tile.fcCollectionType_name}`}
+                    onClick={this.handleOnClick}>
                     <EditIcon fontSize="small" />
                   </IconButton>
                 }
