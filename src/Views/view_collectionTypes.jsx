@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ViewCollectionTypes = () => {
     const [cTypesMode, setCTypesMode] = useState('')
+    const [requestedRecord, setRequestedRecord] = useState(null)
     const classes = useStyles();
 
     // Switch Mode and trigger for render of Add component
@@ -47,20 +48,13 @@ const ViewCollectionTypes = () => {
     }
 
     // OnClick Request Action, remove Add component
-    const onItemRequest = (text) => {
-        if (text === 'Edit')
+    const onItemRequest = (text, record) => {
+        if (text === 'Edit') {
+          console.log("VIEW - Param: " + record)
           setCTypesMode('Edit')
+          setRequestedRecord(record)
       }
-
-    // // Switch Mode and trigger for render of Edit component
-    // const onEditClickCallback = () => {
-    //     setCTypesMode('Edit')
-    // }
-
-    // // After Edit, remove Edit component and rerender table List
-    // const onEditDoneCallback =() => {
-    //     setCTypesMode('')
-    // }
+    }
 
     useEffect(() => {
         // Trigger a re-render on change of mode
@@ -85,7 +79,7 @@ const ViewCollectionTypes = () => {
                         <AddIcon 
                         />
                     </Fab></Paper>
-                {cTypesMode === 'Edit' && <CollectionTypeEdit onClearCallback={onClearCallback}/> }
+                {cTypesMode === 'Edit' && <CollectionTypeEdit requestedRecord={requestedRecord}  onClearCallback={onClearCallback}/> }
                 {cTypesMode === 'Add' && <CollectionTypeAdd  onClearCallback={onClearCallback}/> }
             </Grid>
           </Grid>

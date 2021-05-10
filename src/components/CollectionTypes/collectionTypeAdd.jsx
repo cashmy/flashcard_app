@@ -121,7 +121,7 @@ const CollectionTypeAdd = (props) => {
                     />
                 </Grid>
 
-
+                {/* BUTTONS: Cancel, Reset, Submit */}
                 <Grid item style={{ marginTop: 16 }}>
                     <Controls.Button
                         text="Cancel"
@@ -139,12 +139,11 @@ const CollectionTypeAdd = (props) => {
                 <Grid item style={{ marginTop: 16 }}>
                     <Controls.Button
                         type="submit"
-                        text="Submit"
+                        text="Add"
                     />
                 </Grid>
             </Grid>
-
-            <pre>{JSON.stringify(values, 0, 2)}</pre>
+            {/* <pre>{JSON.stringify(values, 0, 2)}</pre> */}
         </Paper>
     </Form>
     </div>
