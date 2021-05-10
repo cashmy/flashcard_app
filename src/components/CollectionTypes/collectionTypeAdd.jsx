@@ -12,15 +12,19 @@ const initialFValues = {
 
 const CollectionTypeAdd = () => {
 
-    const validate = () => {
-        let temp = {};
-        temp.fcCollectionType_id = values.fcCollectionType_id ? "" : "This field is required."
-        temp.fcCollectionType_name = values.fcCollectionType_name ? "" : "This field is required."
-        temp.fcCollectionType_desc = values.fcCollectionType_desc ? "" : "This field is required."
+    const validate = (fieldValues = values) => {
+        let temp = {...errors};
+        if('fcCollectionType_id' in fieldValues) 
+            temp.fcCollectionType_id = fieldValues.fcCollectionType_id ? "" : "This field is required."
+        if('fcCollectionType_name' in fieldValues)
+            temp.fcCollectionType_name = fieldValues.fcCollectionType_name ? "" : "This field is required."
+        if('fcCollectionType_desc' in fieldValues)
+            temp.fcCollectionType_desc = fieldValues.fcCollectionType_desc ? "" : "This field is required."
         setErrors({
             ...temp
         })
 
+        if(fieldValues === values)
         return Object.values(temp).every(x => x === "")
     }
 
@@ -29,8 +33,9 @@ const CollectionTypeAdd = () => {
         // setValues,
         errors,
         setErrors,
-        handleInputChange
-    } = useForm(initialFValues)
+        handleInputChange,
+        resetForm,
+    } = useForm(initialFValues, true, validate)
 
 
   // TODO: Submit button (Add hook to API call here)
@@ -104,7 +109,6 @@ const CollectionTypeAdd = () => {
 
                 <Grid item style={{ marginTop: 16 }}>
                     <Controls.Button
-                        type="cancel"
                         text="Cancel"
                         color="secondary"
                     />
@@ -113,6 +117,7 @@ const CollectionTypeAdd = () => {
                     <Controls.Button
                         text="Reset"
                         color="default"
+                        onClick={resetForm}
                     />
                 </Grid>
                 <Grid item style={{ marginTop: 16 }}>
