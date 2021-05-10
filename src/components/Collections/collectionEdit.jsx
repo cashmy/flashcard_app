@@ -85,11 +85,13 @@ const CollectionEdit = () => {
           <form onSubmit={handleSubmit} noValidate>
             <Paper style={{ padding: 16 }}>
               <Grid container alignItems="flex-start" spacing={2}>
+
                 {formFields.map((item, idx) => (
                   <Grid item xs={item.size} key={idx}>
                     {item.field}
                   </Grid>
                 ))}
+                
                 <Grid item style={{ marginTop: 16 }}>
                   <Button
                     type="button"
