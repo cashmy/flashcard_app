@@ -4,6 +4,7 @@ import Controls from '../../components/controls/Controls';
 import { useForm, Form} from '../../components/useForm';
 import axios from 'axios'
 
+// Initialization: Setup initial field values.
 const initialFValues = {
     fcCollectionType_id: '',
     fcCollectionType_name: '',
@@ -12,13 +13,14 @@ const initialFValues = {
 }
 
 const CollectionTypeAdd = (props) => {
-    
-    // const {onClearCallBack} = props
 
+    // Validation function (to be passed as a callback)
     const validate = (fieldValues = values) => {
         let temp = {...errors};
         if('fcCollectionType_id' in fieldValues) 
-            temp.fcCollectionType_id = fieldValues.fcCollectionType_id ? "" : "This field is required."
+            temp.fcCollectionType_id = fieldValues.fcCollectionType_id ? "" : "This field is required." 
+            // TODO: Add (nested ternary statement) or (Switch-Case) for additional validations on Type_Id 
+            // temp.fcCollectionType_id = (fieldValues.fcCollectionType_id.length > 0 && fieldValues.fcCollectionType_id.length < 4) ? "" : "Maximum length is 3." 
         if('fcCollectionType_name' in fieldValues)
             temp.fcCollectionType_name = fieldValues.fcCollectionType_name ? "" : "This field is required."
         if('fcCollectionType_desc' in fieldValues)
@@ -31,6 +33,7 @@ const CollectionTypeAdd = (props) => {
         return Object.values(temp).every(x => x === "")
     }
 
+    // Controls parameters for Field props    
     const {
         values,
         // setValues,
@@ -41,17 +44,19 @@ const CollectionTypeAdd = (props) => {
     } = useForm(initialFValues, true, validate)
 
 
+    // SaveSubmit Callback handler - event driven
     const handleSubmit = (event) => {
         event.preventDefault();
         if(validate())
             // TODO: Refactor into services layer (?)
-            // TODO: Add a callback to Parent(View) that re-renders the list table
+            // TODO: Add a callback to Parent(View) that re-renders the list table (after each add)
            axios.post('http://127.0.0.1:8000/fcCollectionType/', (values))
                 .then(response => { resetForm()
                  })
                 .catch(error => alert('There was an error! ' + error.message));
     };
 
+    // Cancel Callback handler (pass back to parent)
     const handleCancel = (event) => {
         props.onClearCallback("Clear")
     }
@@ -71,6 +76,7 @@ const CollectionTypeAdd = (props) => {
                         value={values.fcCollectionType_id}
                         onChange={handleInputChange}
                         error={errors.fcCollectionType_id}
+                        inputProps={{style: {textTransform: 'uppercase'}}}
                     />
                 </Grid>
 
@@ -82,6 +88,7 @@ const CollectionTypeAdd = (props) => {
                         value={values.fcCollectionType_name}
                         onChange={handleInputChange}
                         error={errors.fcCollectionType_name}
+                        inputProps={{style: {textTransform: 'capitalize'}}}
                     />
                 </Grid>
 
