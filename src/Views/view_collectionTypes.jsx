@@ -41,27 +41,27 @@ const ViewCollectionTypes = () => {
         setCTypesMode('Add')
     }
 
-    // After submission, remove Add component
-    const onAddCallback = () => {
-        setCTypesMode('')
-    }
+    // // After submission, remove Add component
+    // const onAddCallback = () => {
+    //     setCTypesMode('')
+    // }
 
-    // Switch Mode and trigger for render of Edit component
-    const onEditClickCallback = () => {
-        setCTypesMode('Edit')
-    }
+    // // Switch Mode and trigger for render of Edit component
+    // const onEditClickCallback = () => {
+    //     setCTypesMode('Edit')
+    // }
 
-    // After Edit, remove Edit component and rerender table List
-    const onEditDoneCallback =() => {
-        setCTypesMode('')
-    }
+    // // After Edit, remove Edit component and rerender table List
+    // const onEditDoneCallback =() => {
+    //     setCTypesMode('')
+    // }
 
     useEffect(() => {
         // Trigger a re-render on change of mode
     }, [cTypesMode])
 
     return (
-      <React.Fragment>
+
         <div className={classes.root}>
           <Grid container spacing={3}>
             <Grid item xs={3}>
@@ -80,11 +80,11 @@ const ViewCollectionTypes = () => {
                         />
                     </Fab></Paper>
                 {cTypesMode === 'Edit' && <CollectionTypeEdit /> }
-                {cTypesMode === 'Add' && <CollectionTypeAdd /> }
+                {cTypesMode === 'Add' && <CollectionTypeAdd  /> }
             </Grid>
           </Grid>
         </div>
-      </React.Fragment>
+
     )
 }
 
