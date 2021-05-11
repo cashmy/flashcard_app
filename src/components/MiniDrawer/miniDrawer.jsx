@@ -25,9 +25,10 @@ import ImageSearchTwoToneIcon from '@material-ui/icons/ImageSearchTwoTone';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import FlashCardContainer from '../FlashCardContainer/flashCardContainer'
+// import FlashCardContainer from '../FlashCardContainer/flashCardContainer'
 import ViewCollections from '../../Views/view_collections'
 import ViewCollectionTypes from '../../Views/view_collectionTypes'
+import ViewFlashCards from '../../Views/view_flashcards'
 import SignIn from '../SignIn/signIn'
 
 
@@ -199,7 +200,7 @@ export default function MiniDrawer() {
       
         <main className={classes.content}>
           <div className={classes.toolbar} />
-            <Route exact={true} path="/" component={FlashCardContainer} />
+            <Route exact={true} path="/" component={ViewFlashCards} />
             <Route exact={true} path="/collection" component={ViewCollections} />
             <Route exact={true} path={'/collectionType'} component={ViewCollectionTypes} />
             <Route exact={true} path={'/signIn'} component={SignIn} />

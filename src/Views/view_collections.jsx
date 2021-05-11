@@ -27,7 +27,7 @@ const ViewCollections = () => {
     const classes = useStyles();
 
     return (
-      <React.Fragment>
+
         <div className={classes.root}>
           <Grid container spacing={3}>
             <Grid item xs={3}>
@@ -39,7 +39,7 @@ const ViewCollections = () => {
             </Grid>
           </Grid>
         </div>
-      </React.Fragment>
+
     )
 }
 

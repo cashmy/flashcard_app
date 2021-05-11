@@ -2,7 +2,7 @@ import React from 'react';
 import FlashCard from '../FlashCard/flashCard'
 import './flashCardContainer.scss'
 import _ from "lodash"
-import CollectionsTable from '../Collections/collectionsTable'
+// import CollectionsTable from '../Collections/collectionsTable'
 
 class FlashCardContainer extends React.Component {
     constructor() {
@@ -81,10 +81,10 @@ class FlashCardContainer extends React.Component {
     render() {
       return (
         <div className='wrapper'>
-            <div className='content-wrapper-sm'>
+            {/* <div className='content-wrapper-sm'>
             <CollectionsTable />
             </div>
-            Some Header Text
+            Some Header Text */}
             <div className='content-wrapper'>
                 <div>
                     <span 
