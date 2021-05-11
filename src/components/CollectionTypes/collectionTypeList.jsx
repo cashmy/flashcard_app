@@ -17,10 +17,7 @@ const styles = theme => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
-    '& .MuiIconButton-root': {
-      color: 'rgba(255, 255, 255, 0.54)',
-    },
-  },
+  }
 });
 
 class CollectionTypeList extends React.Component {
@@ -44,7 +41,7 @@ class CollectionTypeList extends React.Component {
       })
   }
 
-  // Cancel Callback handler (pass back to parent)
+  // EditRequest Callback handler (pass back to parent)
   handleOnClick = (tile) => {
     console.log('LIST - fcCollectionType_id: ', tile.fcCollectionType_id)
     this.props.onItemRequest("Edit", tile)
@@ -68,7 +65,7 @@ render () {
                   <IconButton 
                     aria-label={`edit ${tile.fcCollectionType_name}`}
                     onClick={() => this.handleOnClick(tile)}>
-                    <EditIcon fontSize="small" />
+                    <EditIcon fontSize="small" style={{color: 'rgba(255, 255, 255, 0.54)' }} />
                   </IconButton>
                 }
               />

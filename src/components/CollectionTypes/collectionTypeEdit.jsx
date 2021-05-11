@@ -4,7 +4,6 @@ import Controls from '../../components/controls/Controls';
 import { useForm, Form} from '../../components/useForm';
 import axios from 'axios'
 
-// TODO: Add Hook to populate form with data
 // Initialization: Setup initial field values.
 const initialFValues = {
   fcCollectionType_id: '',
@@ -56,14 +55,14 @@ const CollectionTypeEdit = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if(validate())
-      alert('Validation passed')
       // TODO: Refactor into services layer (?)
       // TODO: Add a callback to Parent(View) that re-renders the list table (after each add)
       axios.put('http://127.0.0.1:8000/fcCollectionType/'+ values.fcCollectionType_id, values)
-          .then(response => { resetForm()
+          .then(response => { props.onClearCallback("Updated")
+                              alert("Record updated")
             })
           .catch(error => alert('There was an error! ' + error.message));
-      props.onClearCallback("Updated")
+      
   };
 
   const handleCancel = (event) => {
