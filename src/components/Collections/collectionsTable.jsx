@@ -1,46 +1,78 @@
-import * as React from 'react';
-import { DataGrid } from '@material-ui/data-grid';
+import React, {useState, useEffect} from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import IconButton from '@material-ui/core/IconButton';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import image from '../../assets/martin-adams-zbPDL84kvRg-unsplash.jpg';
+import axios from 'axios';
 
-const columns = [
-  { field: 'id', headerName: 'ID', width: 70, hide: true },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
   },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.getValue('firstName') || ''} ${params.getValue('lastName') || ''}`,
+  gridList: {
+    flexWrap: 'nowrap',
+    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+    transform: 'translateZ(0)',
   },
-];
+  title: {
+    color: theme.palette.primary.white,
+  },
+  titleBar: {
+    background:
+      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    color: 'rgba(255, 255, 255, 0.95)'
+  },
+}));
 
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
-
+ 
 const CollectionsTable = () => {
+
+  const [collectionData, setCollectionData] = useState([])
+  const classes = useStyles();
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/fcCollections/')
+      .then(response => setCollectionData(response.data))
+  },[])
+
+  // EditRequest Callback handler (pass back to parent)
+  const handleOnClick = (tile) => {
+    console.log('LIST - fcCollection_title: ', tile.fcCollection_title)
+    // this.props.onItemRequest("Edit", tile)
+    }
+
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid rows={rows} columns={columns} pageSize={5} />
+    <div className={classes.root}>
+      <GridList className={classes.gridList} cols={5} cellHeight={180} height="auto" width="180">
+        {collectionData.map((tile) => (
+          <GridListTile key={tile.fcCollecton_id}>
+            <img src={image} alt={tile.fcCollection_title} />
+            <GridListTileBar
+              title={tile.fcCollection_title}
+              classes={{
+                root: classes.titleBar,
+                title: classes.title,
+              }}
+              actionIcon={
+                <IconButton 
+                  aria-label={`star ${tile.fcCollection_title}`} 
+                  onClick={() => handleOnClick(tile)}>
+                  <StarBorderIcon className={classes.title} style={{color: 'rgba(255, 255, 255, 0.95)' }} />
+                </IconButton>
+              }
+            />
+          </GridListTile>
+        ))}
+      </GridList>
     </div>
   );
 }
-
 
 export default CollectionsTable

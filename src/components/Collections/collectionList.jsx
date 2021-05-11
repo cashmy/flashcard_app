@@ -17,11 +17,7 @@ const styles = theme => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
-    '& .MuiIconButton-root': {
-      color: 'rgba(255, 255, 255, 0.54)',
-    }
   },
-
 });
 class CollectionList extends React.Component {
 
@@ -38,7 +34,6 @@ class CollectionList extends React.Component {
       this.setState({
         collectionData: response.data
       })
-      console.log("Response data:", response.data)
   }
 
   render(){
@@ -57,7 +52,7 @@ class CollectionList extends React.Component {
                 title={tile.fcCollection_title}
                 actionIcon={
                   <IconButton aria-label={`edit ${tile.fcCollection_title}`}>
-                    <EditIcon fontSize="small" />
+                    <EditIcon fontSize="small" style={{color: 'rgba(255, 255, 255, 0.54)' }} />
                   </IconButton>
                 }
               />

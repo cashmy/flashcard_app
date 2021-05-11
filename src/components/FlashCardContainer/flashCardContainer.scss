@@ -20,6 +20,15 @@ $background: #F1F1F1;
   padding: 0 2em;
 }
 
+.content-wrapper-sm {
+  display: flex;
+  height: 25vh;
+  justify-content: center;
+  align-items: center;
+  background: $background;
+  margin: 0 auto;
+  padding: 0 2em;
+}
 
 .flashcard-container__icon {
   position: fixed;
